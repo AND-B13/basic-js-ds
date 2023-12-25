@@ -1,21 +1,27 @@
+const { NotImplementedError } = require('../extensions/index.js');
 const { Node } = require('../extensions/list-tree.js');
+
+/**
+* Implement simple binary search tree according to task description
+* using Node from extensions
+*/
 
 class BinarySearchTree {
   constructor() {
-    this.treeRoot = null;
+    this.branch = null;
   }
 
   root() {
-    return this.treeRoot;
+    return this.branch;
   }
 
   add(data) {
     const newNode = new Node(data);
   
-    if (this.treeRoot === null) {
-      this.treeRoot = newNode;
+    if (this.branch === null) {
+      this.branch = newNode;
     } else {
-      this.insertNode(this.treeRoot, newNode);
+      this.insertNode(this.branch, newNode);
     }
   }
 
@@ -36,7 +42,7 @@ class BinarySearchTree {
   }
 
   has(data) {
-    return this.searchNode(this.treeRoot, data) !== null;
+    return this.searchNode(this.branch, data) !== null;
   }
   
   searchNode(node, data) {
@@ -52,11 +58,11 @@ class BinarySearchTree {
   }
 
   find(data) {
-    return this.searchNode(this.treeRoot, data);
+    return this.searchNode(this.branch, data);
   }
 
   remove(data) {
-    this.treeRoot = this.removeNode(this.treeRoot, data);
+    this.branch = this.removeNode(this.branch, data);
   }
   
   removeNode(node, data) {
@@ -93,31 +99,31 @@ class BinarySearchTree {
   }
 
   min() {
-    if (this.treeRoot === null) {
+    if (this.branch === null) {
       return null;
     }
   
-    let currentNode = this.treeRoot;
+    let currentBranch = this.branch;
 
-    while (currentNode.left !== null) {
-      currentNode = currentNode.left;
+    while (currentBranch.left !== null) {
+      currentBranch = currentBranch.left;
     }
   
-    return currentNode.data;
+    return currentBranch.data;
   }
 
   max() {
-    if (this.treeRoot === null) {
+    if (this.branch === null) {
       return null;
     }
   
-    let currentNode = this.treeRoot;
-    
-    while (currentNode.right !== null) {
-      currentNode = currentNode.right;
+    let currentBranch = this.branch;
+
+    while (currentBranch.right !== null) {
+      currentBranch = currentBranch.right;
     }
   
-    return currentNode.data;
+    return currentBranch.data;
   }
 }
 
